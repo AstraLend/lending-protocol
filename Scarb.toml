@@ -1,0 +1,27 @@
+[package]
+name = "lending_protocol"
+version = "0.1.0"
+edition = "2023_01"
+cairo-version = "2.6.3"
+
+# See more keys and their definitions at https://docs.swmansion.com/scarb/docs/reference/manifest
+
+[dependencies]
+starknet = "2.6.3"
+# Library
+alexandria_math = { git = "https://github.com/keep-starknet-strange/alexandria.git", rev = "0aa7cca" }
+openzeppelin = { git = "https://github.com/OpenZeppelin/cairo-contracts.git", tag = "v0.11.0" }
+pragma_lib = { git = "https://github.com/astraly-labs/pragma-lib", tag = "2.6.1" }
+
+[lib]
+
+[cairo]
+sierra-replace-ids = true
+
+[[target.starknet-contract]]
+allowed-libfuncs-list.name = "experimental"
+sierra = true
+casm = true
+
+[tool.fmt]
+sort-module-level-items = true
