@@ -414,6 +414,13 @@ mod Market {
             // Update actual interest amount
             pool_dispatcher.add_actual_interest_amount(interest_amount);
 
+            // Subtract expect interest amount per year
+            pool_dispatcher
+                .subtract_expect_interest_amount_per_year(
+                    (user_borrow_amount * user_borrow_info.borrow_apr)
+                        / (ten_pow_decimals().into() * ten_pow_decimals().into())
+                );
+
             // Transfer collateral token to user
             pool_dispatcher
                 .approve_transfer(collateral_token, user_borrow_info.collateral_amount); // Approve
@@ -516,6 +523,13 @@ mod Market {
 
             // Update actual interest amount
             pool_dispatcher.add_actual_interest_amount(interest_amount);
+
+            // Subtract expect interest amount per year
+            pool_dispatcher
+                .subtract_expect_interest_amount_per_year(
+                    (borrow_amount * loan_info.borrow_apr)
+                        / (ten_pow_decimals().into() * ten_pow_decimals().into())
+                );
 
             // Transfer collateral token to caller
             pool_dispatcher

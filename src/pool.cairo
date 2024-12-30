@@ -385,6 +385,15 @@ mod Pool {
                 .write(self.expect_interest_amount_per_year.read() + amount);
         }
 
+        fn subtract_expect_interest_amount_per_year(ref self: ContractState, amount: u256) {
+            let caller = get_caller_address();
+            assert(caller == self.market_address.read(), Error::NOT_MARKET_CONTRACT);
+
+            self
+                .expect_interest_amount_per_year
+                .write(self.expect_interest_amount_per_year.read() - amount);
+        }
+
         fn add_actual_interest_amount(ref self: ContractState, amount: u256) {
             self.actual_interest_amount.write(self.actual_interest_amount.read() + amount);
         }

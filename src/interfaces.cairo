@@ -116,6 +116,8 @@ pub trait IPool<TContractState> {
 
     fn add_expect_interest_amount_per_year(ref self: TContractState, amount: u256);
 
+    fn subtract_expect_interest_amount_per_year(ref self: TContractState, amount: u256);
+
     fn add_actual_interest_amount(ref self: TContractState, amount: u256);
 
     fn approve_transfer(ref self: TContractState, token: ContractAddress, amount: u256);
